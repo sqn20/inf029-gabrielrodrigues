@@ -33,7 +33,8 @@ int main()
         switch (op)
         {
         case 0:
-        {
+        { 
+
             sair = 1;
             finalizar();
             break;
@@ -41,7 +42,18 @@ int main()
         case 1:
         { //inserir
             //TODO
-            ret = inserirNumeroEmEstrutura(5, 25);
+               int Lugposicao;
+            int tamanho_estrutura; 
+
+            printf ("Digite a posição a qual irá adicionar a estrutura!"); 
+            scanf ("%d",&Lugposicao);
+
+            printf ("Digite o Tamanho da Estrutura Criad")
+            scanf ("%d",&tamanho_estrutura); 
+
+            ret = inserirNumeroEmEstrutura(Lugposicao,tamanho_estrutura);
+
+            
             if (ret == SUCESSO)
             {
                 printf("Inserido com sucesso");
@@ -59,14 +71,35 @@ int main()
 
         case 2:
         { //excluir
+          
+            int escolha; 
+                printf (" Digite onde deseja excluir\n");
+              
+                printf ("1 - voltar para menu estrutura");
+                    if (escolha == 1); 
+                        break; 
+             
+                 printf ("2 - Digitar a posição da estrutura ");
+                    if (escolha == 2){
+                        int posicao; 
+                        int lugar; 
+                            printf ("Digite Posição\t");
+                            scanf ("%d",&posicao);
+                            printf ("Digite lugar\t"); 
+                            scanf ("%d",&lugar);
+                        excluirNumeroDoFinaldaEstrutura(posicao); 
+                    break; 
+                    }
+                    
+
             //TODO
             break;
         }
 
         case 3:
         { //recuperar dados estrutura auxiliar
-            int posicao, retorno;
-            printf("Qual a estrutura a ser listada (1..10)?");
+            int posicao, volta;
+            printf("Qual estrutura deseja recuperar?");
             scanf("%d", &posicao);
 
             int qtd = getQuantidadeElementosEstruturaAuxiliar(posicao);
@@ -79,9 +112,9 @@ int main()
             { // existe elemento
                 int vetorAux[qtd];
 
-                retorno = getDadosEstruturaAuxiliar(posicao, vetorAux);
+                volta = getDadosEstruturaAuxiliar(posicao, vetorAux);
 
-                if (retorno == SUCESSO)
+                if (volta == SUCESSO)
                 {
                     //imprimir para os dados para o usuário
                     int i = 0;
