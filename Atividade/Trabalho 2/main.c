@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "EstruturaVetores.h"
+#include <locale.h>
+#include "estruturaVetores.h"
 
 int menu();
 
@@ -14,15 +14,16 @@ int menu()
     printf("0 - Sair\n");
     printf("1 - Inserir\n");
     printf("2 - Excluir\n");
-    printf("3 - Listar uma estrutura\n");
+    printf("3 - Listar uma No\n");
     printf("4 - Dobrar Numero\n");
-    printf("5 - \n");
+    printf("5 - \n::");
     scanf("%d", &op);
     return op;
 }
 
 int main()
 {
+	setlocale(LC_ALL, "");
     inicializar();
     int op;
     int sair = 0;
@@ -33,8 +34,7 @@ int main()
         switch (op)
         {
         case 0:
-        { 
-
+        {
             sair = 1;
             finalizar();
             break;
@@ -42,83 +42,83 @@ int main()
         case 1:
         { //inserir
             //TODO
-               int Lugposicao;
-            int tamanho_estrutura; 
-
-            printf ("Digite a posição a qual irá adicionar a estrutura!"); 
-            scanf ("%d",&Lugposicao);
-
-            printf ("Digite o Tamanho da Estrutura Criad")
-            scanf ("%d",&tamanho_estrutura); 
-
-            ret = inserirNumeroEmEstrutura(Lugposicao,tamanho_estrutura);
-
-            
+			int posicao;
+			int tamanho;
+			printf("Digite a posicao que deseja criar Estrutura auxiliar: ");
+			scanf("%d", &posicao);
+			printf("Digite o tamanho da Estrutura que deseja criar: ");
+			scanf("%d", &tamanho);
+            ret = inserirNumeroEstrutura(posicao, tamanho);
             if (ret == SUCESSO)
             {
-                printf("Inserido com sucesso");
+                printf("Inserido com sucesso\n");
             }
             else if (ret == SEM_ESPACO)
             {
-                printf("Sem Espaço");
+                printf("Sem Espaço\n");
             }
             else if (ret == SEM_ESTRUTURA_AUXILIAR)
             {
-                printf("Sem estrutura Auxiliar");
+                printf("Sem Estrutura Auxiliar\n");
             }
             break;
         }
 
         case 2:
         { //excluir
-          
-            int escolha; 
-                printf (" Digite onde deseja excluir\n");
-              
-                printf ("1 - voltar para menu estrutura");
-                    if (escolha == 1); 
-                        break; 
-             
-                 printf ("2 - Digitar a posição da estrutura ");
-                    if (escolha == 2){
-                        int posicao; 
-                        int lugar; 
-                            printf ("Digite Posição\t");
-                            scanf ("%d",&posicao);
-                            printf ("Digite lugar\t"); 
-                            scanf ("%d",&lugar);
-                        excluirNumeroDoFinaldaEstrutura(posicao); 
-                    break; 
-                    }
-                    
-
-            //TODO
+            int op;
+			printf("Digite o que deseja fazer: \n");
+			printf("0 - Voltar\n");
+			printf("1 - Excluir no final da Estrutura\n");
+			printf("2 - Excluir numero especifico da Estrutura\n");
+			scanf("%d", &op);
+			if( op == 0 )
+				break;
+			else
+			if (op == 1)
+			{
+				int pos;
+				printf("Digite a posição: ");
+				scanf("%d", &pos);
+				excluirNumeroDoFinaldaEstrutura(pos);
+			}
+			else
+			if (op == 2)
+			{
+				int num;
+				int pos;
+				printf("Digite a posição: ");
+				scanf("%d", &pos);
+				printf("Digite o número que está na Estrutura: ");
+				scanf("%d", &num);
+				excluirNumeroEspecificoDeEstrutura(pos, num);
+			}
             break;
         }
 
         case 3:
-        { //recuperar dados estrutura auxiliar
-            int posicao, volta;
-            printf("Qual estrutura deseja recuperar?");
+        { //recuperar dados No auxiliar
+            int posicao, retorno;
+            printf("Qual a Estrutura a ser listada (1..10)?");
             scanf("%d", &posicao);
 
             int qtd = getQuantidadeElementosEstruturaAuxiliar(posicao);
 
             if (qtd == POSICAO_INVALIDA)
             {
-                printf("Posição inválida");
+                printf("Posição inválida\n");
             }
             else
             { // existe elemento
                 int vetorAux[qtd];
 
-                volta = getDadosEstruturaAuxiliar(posicao, vetorAux);
+                retorno = getDadosEstruturaAuxiliar(posicao, vetorAux);
 
-                if (volta == SUCESSO)
+                if (retorno == SUCESSO)
                 {
-                    //imprimir para os dados para o usuário
-                    int i = 0;
-                    for (; i < qtd; i++)
+                    //imprimir para os dados para o usuÃ¡rio
+                    int i;
+                    for (i = 0; i < qtd; i++)
                     {
                         printf("%d", vetorAux[i]);
                     }
@@ -133,9 +133,9 @@ int main()
             int valor;
             scanf("%i", &valor);
 
-            dobrar(&valor);
+            //dobrar(&valor);
 
-            //passar para um funcao (void dobrar(...)) que recebe o numero e dobra (EstruturaVetores.c)
+            //passar para um funcao (void dobrar(...)) que recebe o numero e dobra (NoVetores.c)
 
             printf("%i", valor);
 
