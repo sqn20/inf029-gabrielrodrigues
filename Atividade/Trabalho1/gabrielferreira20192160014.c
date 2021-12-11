@@ -267,22 +267,23 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
         return 3;
 
 
-    DataQuebrada dqInicial = DataQuebrada(datainicial);
-    DataQuebrada dqFim = DataQuebrada(datafinal);
+    DataQuebrada dqInicial = quebraData(datainicial);
+    DataQuebrada dqFim = quebraData(datafinal);
 
-    if (dqInicial.iAno > dqFim.iAno){
+    if (dqInicial.iAno > dqFim.iAno)
         return 4;
-        }
+        
+        
     else 
         if (dqInicial.iAno == dqFim.iAno)
             if (dqInicial.iMes > dqFim.iMes)
              return 4;
-                    
-        else if (dqInicial.iMes == dqFim.iMes)
-        {
-            if (dqInicial.iDia > dqFim.iDia)
-                return 4;
-        } 
+                   
+        else 
+        	if (dqInicial.iMes == dqFim.iMes)
+            		if (dqInicial.iDia > dqFim.iDia)
+             			   return 4;
+        
         
     nDias = dqFim.iDia - dqInicial.iDia ;
     nMeses =dqFim.iAno - dqInicial.iAno;
@@ -535,4 +536,6 @@ void usarData(char *datar, int *usarDia, int *usarMes, int *usarAno)
     int intDia = *usarDia = atoi(dia);
     int intMes = *usarMes = atoi(mes);
     int intAno = *usarAno = atoi(ano);
+}
+} 
 }
